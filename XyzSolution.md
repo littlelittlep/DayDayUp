@@ -1,6 +1,6 @@
 # 题解
 
-# 2023.3.28 力扣28、
+# 2023.3.28 力扣28（字符串匹配KMP）、力扣486、877（博弈动态规划）
 
 ## [`28、找出字符串中第一个匹配项的下标`](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
 
@@ -80,6 +80,71 @@ public:
         pair<int,int> p=dp[0][nums.size()-1];
         if((p.first-p.second)>=0) return true;
         return false;
+    }
+};
+```
+
+# 2023.3.29 力扣322（零钱兑换）、力扣
+
+## [`322、零钱兑换`](https://leetcode.cn/problems/coin-change/)
+
+```C++
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        //dp[i]代表金额为i的最少硬币个数
+        int dp[10001]={[0 ... 10000] = 10002};
+        //初始化
+        for(int i=0;i<coins.size();i++){
+            //硬币面值超过金额，不考虑（此处=注意）
+            if(coins[i]<=amount)
+            dp[coins[i]]=1;
+        }
+        dp[0]=0;
+        //动态规划转移方程
+        for(int i=1;i<=amount;i++){
+            if(dp[i]==10002){
+                for(int j=0;j<coins.size();j++){
+                    if(i-coins[j]>0&&dp[(i-coins[j])]!=10002)
+                    dp[i]=min(1+dp[(i-coins[j])],dp[i]);
+                }
+            } 
+        }
+        if(dp[amount]==10002) return -1;
+        else return dp[amount];
+    }
+};
+```
+
+## [`300、最长递增子序列`](https://leetcode.cn/problems/longest-increasing-subsequence/submissions/)
+
+```C++
+//此题的难点在于如何定义dp
+//没想出如何定义dp，看了一下dp定义，然后自己写的，一次就过！
+//一个好的dp定义真的很重要！！！！
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        //dp[i]表示以nums[i]结尾的最长严格递增子序列长度
+        int dp[2500];
+        //初始化数组
+        for(int i=0;i<2500;i++){
+            dp[i]=1;
+        }
+        //dp[i]的值，为小于i的j,即dp[j]+1(且nums[i]>nums[j])
+        for(int i=1;i<nums.size();i++){
+            for(int j=0;j<i;j++){
+                if(nums[i]>nums[j]){
+                    dp[i]=max(dp[j]+1,dp[i]);
+                }
+            }
+        }
+        //输出dp数组中的最大值
+        int temp=0;
+        for(int i=0;i<nums.size();i++){
+            if(dp[i]>temp) temp=dp[i];
+        }
+        return temp;
     }
 };
 ```
