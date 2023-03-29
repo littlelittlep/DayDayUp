@@ -11,3 +11,16 @@
 > 2. [**`题目2`**&emsp;下图选 ≥ 1道题目](https://github.com/labuladong/fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E5%8D%9A%E5%BC%88%E9%97%AE%E9%A2%98.md)
 >
 >    <img src="assets/image-20230327211947003.png" alt="image-20230327211947003" style="zoom: 67%;" />
+
+### 3.29 Day2
+
+> **今天内容**   
+>
+> <h3 style="color:red">昨天的kpi都完成的不好，今天赶上！加油！</h3>
+>
+> 1. **`题目1`** [动态规划解题套路框架](https://labuladong.github.io/algo/di-ling-zh-bfe1b/dong-tai-g-1e688/)  **`力扣322  零钱兑换`**
+>
+> 2. **`题目2`**  [动态规划设计：最长递增子序列](https://labuladong.github.io/algo/di-er-zhan-a01c6/dong-tai-g-a223e/dong-tai-g-6ea57/)  **`力扣300 最长递增子序列`**
+>
+>    （关于一个数组中求有几个递增片段，我记得好像有一道公式，有时间可以查查，后面做完题有机会，我会查完提供在我的题解笔记中）
+
