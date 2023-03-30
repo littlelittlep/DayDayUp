@@ -29,6 +29,9 @@
 > **今天内容**   
 >
 > 1. **`题目1`** [动态规划设计：最长递增子序列](https://labuladong.github.io/algo/di-er-zhan-a01c6/dong-tai-g-a223e/dong-tai-g-6ea57/)   **`力扣354  俄罗斯套娃信封问题`**
->
-> 2. **`题目2`**  [回溯算法解题框架](https://labuladong.github.io/algo/di-ling-zh-bfe1b/hui-su-sua-c26da/)  **`力扣51 N皇后问题`**（该链接的文章中其他题目自选做，即46、52题自己选择写不写，如果写了，也将题解放在自己笔记中）
 
+### 3.31 Day3
+
+> **今天内容**   
+>
+> 1. **`题目1`**  [回溯算法解题框架](https://labuladong.github.io/algo/di-ling-zh-bfe1b/hui-su-sua-c26da/)  **`力扣51 N皇后问题`**（该链接的文章中其他题目自选做，即46、52题自己选择写不写，如果写了，也将题解放在自己笔记中）
