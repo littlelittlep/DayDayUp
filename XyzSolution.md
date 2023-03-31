@@ -149,3 +149,81 @@ public:
 };
 ```
 
+**`二分法查找解法`**
+
+> 最长递增子序列和一种叫做 *patience game*的纸牌游戏有关，有一种排序算法叫做***patience sorting***
+>
+> **纸牌遍历顺序拿取，规则如下:**只能把点数小的牌压到点数比它大的牌上；如果当前牌点数较大没有可以放置的堆，则新建一个堆，把这张牌放进去；如果当前牌有多个堆可供选择，则选择最左边的那一堆放置。最终得到的堆数就是最长递增子序列长度
+>
+> **思路如下**
+>
+> > - 用vector创建一个数组放每一个堆的堆顶，对于每一张牌，用二分查找找到它应插入的位置，如果找不到，新建一个堆
+> > - 遍历完所有牌以后，数组的长度就是最长递增子序列的长度了
+
+# 2023.3.31 力扣354（俄罗斯套娃信封）
+
+## [`354、俄罗斯套娃信封`](https://leetcode.cn/problems/russian-doll-envelopes/)
+
+> **思路**
+>
+> 1. 先对二维中的第一维进行非降序排序
+>
+>    自定义 *cmp* 函数 (这里复习上次最长递增子序列中提到，`对于第二位要采取非升序排序`)
+>
+> 2. 对于第二位进行找到最长递增子序列即可
+>
+>    一开始用昨天29的求最长递增子序列的方法，时间复杂度太高。。。
+>
+>    所以复习了那篇博客中的二分查找解法（详见29笔记补充），终于AC了
+>
+> ```C++
+> class Solution {
+> private:
+>     //自定义比较函数，第一维非降序排列，当第一维数字相同，第二位按照非升序排列
+>  static bool  cmp(const vector<int> &a, const vector<int> &b){
+>      if(a[0]<b[0]) return true;
+>      else if(a[0]==b[0]&&a[1]<=b[1]) return false;
+>      else if(a[0]==b[0]&&a[1]>b[1]) return true;
+>      else return false;
+> 
+>  }
+> public:
+>     int maxEnvelopes(vector<vector<int>>& envelopes) {
+>         sort(envelopes.begin(),envelopes.end(),cmp);
+>         int dp[100001]={0};
+>         //数组初始化
+>         for(int i=0;i<envelopes.size();i++){
+>             dp[i]=1;
+>         }
+>         //堆数
+>         int piles=0;
+>         vector<int> res;
+>         for(int i=0;i<envelopes.size();i++){
+>             int left=0,right=res.size();
+>             //二分查找确定是能找到堆插入还是新建堆
+>             while(left<right){
+>                 int mid=(left+right)/2;
+>                 if(res[mid]>envelopes[i][1]){
+>                     right=mid;
+>                 }
+>                 if(res[mid]<envelopes[i][1]){
+>                     left=mid+1;
+>                 }
+>                 else{
+>                     right=mid;
+>                 }
+>             }
+>             if(left==piles) {
+>                 res.push_back(envelopes[i][1]);
+>                 piles++;
+>             }
+>             res[left]=envelopes[i][1];
+>         }
+>         //向量的长度就是最长递增子序列
+>         return res.size();
+>     }
+> };
+> ```
+>
+> 
+
