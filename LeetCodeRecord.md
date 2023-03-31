@@ -36,3 +36,15 @@
 >
 > 1. **`题目1`**  [回溯算法解题框架](https://labuladong.github.io/algo/di-ling-zh-bfe1b/hui-su-sua-c26da/)  **`力扣51 N皇后问题`**（该链接的文章中其他题目自选做，即46、52题自己选择写不写，如果写了，也将题解放在自己笔记中）
 
+
+
+## 4.1 Day5
+
+> <h3 style="color:red">愚人节快乐！！！加油，明天截至需要补足所有本周拖欠的 kpi 哦哦哦！干巴爹！！！</h3>
+>
+> 1. **`题目1`** [一个方法团灭nSum问题](https://labuladong.github.io/algo/di-ling-zh-bfe1b/yi-ge-fang-894da/)   **`力扣15 三数之和`**
+
+
+
+
+
