@@ -227,3 +227,73 @@ public:
 >
 > 
 
+## [`354、N皇后问题`](https://leetcode.cn/problems/n-queens/submissions/)
+
+> **思路**（标记红色的是此题感觉比较难的）
+>
+> 对于回溯，最重要的是三个地方
+>
+> 1. 路径记录（这个此题中就是满足条件的一种解，没什么好说的）
+> 2. `可选范围`（这个在此题中比较隐蔽，这里其实是n种位置的排列组合，每一种Q的位置代表选择范围中的一个元素）
+> 3. 选择范围的标记（怎么判断是否要结束该路径继续，`此题对角线说明行数和列数的差的绝对值相等`）
+>
+> 剩下的套一下回溯框架没啥好说的啦！
+>
+> ```C++
+> class Solution {
+> private:
+>     //最终结果
+>     vector<vector<string>> res;
+>     //将每一行的情况保留下来，最终结果其实就是每一行的排列组合
+>     vector<string> strs;
+>     //path保存路径，strs保存每一行的可能情况（n种，flag判断是否某行已经用过，stack用来记录之前走过的行对应的Q的位置）
+>     void backtrack(vector<string> &path, vector<string> &strs,vector<bool> &flag,vector<int> &rec,int dep){
+>         //路径长度达到返回结果
+>         if(path.size()==strs.size()){
+>             res.push_back(path);
+>         }
+>         for(int i=0;i<strs.size();i++){
+>             //该种Q位置的情况还没有被用过
+>             if(!flag[i]) continue;
+>             bool cFlag=false;
+>             //对角线条件符合就抛弃该种情况的Q位置
+>             for(int j=0;j<rec.size();j++){
+>                 if(abs(dep-j)==abs(rec[j]-i)){
+>                     cFlag=true;
+>                     break;
+>                 }
+>             }
+>             if(cFlag==true) continue;
+>             //没啥好说的，套路
+>             path.push_back(strs[i]);
+>             rec.push_back(i);
+>             flag[i]=false;
+>             backtrack(path,strs,flag,rec,dep+1);
+>             flag[i]=true;
+>             rec.pop_back();
+>             path.pop_back();
+>         }
+> 
+>     }
+> public:
+>     vector<vector<string>> solveNQueens(int n) {
+>         //生成每一行的情况
+>         for(int i=0;i<n;i++){
+>             string s(n,'.');
+>             s[i]='Q';
+>             strs.push_back(s);
+>         }
+>         //用于标记哪一行已经出现
+>         vector<bool> flag(n,true);
+>         //用于存储某一种情况的路径
+>         vector<string> path;
+>         //用来存储已经在队列中的Q的位置
+>         vector<int> rec;
+>         //回溯
+>         backtrack(path,strs,flag,rec,0);
+>         return res;
+>     }
+> };
+> ```
+>
+> 
