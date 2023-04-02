@@ -297,3 +297,60 @@ public:
 > ```
 >
 > 
+
+# 2023.4.1 力扣15 三数之和
+
+## [`15、三数之和`](https://leetcode.cn/problems/3sum/)
+
+> **思路**
+>
+> 1. 三个指针，第一个指针遍历整个数组，遇到相同的元素需要跳
+> 2. 第二个指针初始化为第一个指针的后一个数，遇到相同的数也要跳
+> 3. 第三个指针初始化为数组最后一个数，从后往前走，遇到相同的数跳
+> 4. 其他细节见代码注释
+>
+> ```C++
+> class Solution {
+> private:
+>     vector<vector<int>> res;
+> public:
+>     vector<vector<int>> threeSum(vector<int>& nums) {
+>         //对数组进行排序，可以后面跳相同数
+>         sort(nums.begin(),nums.end());
+>         //==0说明第一个数一定是非正数
+>         for(int i=0;i<nums.size()-2&&nums[i]<=0;i++){
+>             //初始化第二、第三个指针
+>             int q=nums.size()-1,p=i+1;
+>             while(p<q){
+>                 int sum=nums[i]+nums[p]+nums[q];
+>                 //注意此处left、right初始化位置（---------踩得坑-----------）
+>                 int left=nums[p],right=nums[q];
+>                 if(sum<0) {
+>                     //注意此处及以下的每种情况，都应该先移动指针再进行while循环判断是否有重复元素（---------踩得坑-----------）
+>                     p++;
+>                     while(p<q&&nums[p]==left)p++;
+>                 }
+>                 else if(sum==0){
+>                     vector<int> temp={nums[i],left,right};
+>                     res.push_back(temp);
+>                     p++;
+>                     q--;
+>                     while(p<q&&nums[p]==left)p++;
+>                     while(p<q&&nums[q]==right)q--;
+>                 }
+>                 else if(sum>0){
+>                     q--;
+>                     while(p<q&&nums[q]==right)q--;
+>                 }
+>             }
+>             //这里的i要限制大小（---------踩得坑-----------）
+>             while(i<nums.size()-1&&nums[i]==nums[i+1]){
+>                 i++;
+>             };
+>         }
+>         return res;
+>     }
+> };
+> ```
+>
+> 
