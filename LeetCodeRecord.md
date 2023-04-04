@@ -87,17 +87,14 @@
 >
 > **今天的任务**
 >
-> 1. **`题目1`** [滑动窗口解题框架](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E7%AE%97%E6%B3%95%E6%80%9D%E7%BB%B4%E7%B3%BB%E5%88%97/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%8A%80%E5%B7%A7.md)  **`力扣49  字母异位词分组 （Medium）`**（这题我之前做过了）
-> 2. **`题目2`** [滑动窗口解题框架](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E7%AE%97%E6%B3%95%E6%80%9D%E7%BB%B4%E7%B3%BB%E5%88%97/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%8A%80%E5%B7%A7.md)  **`力扣3  无重复字符串的最长子串 （Medium）`**（这题我之前做过了）
-> 3. **附加任务（选做）**
->    - **`题目1`** [滑动窗口解题框架](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E7%AE%97%E6%B3%95%E6%80%9D%E7%BB%B4%E7%B3%BB%E5%88%97/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%8A%80%E5%B7%A7.md)  **`力扣76  最小覆盖子串（Hard）`**
->
+> 1. **`题目1`** [编辑距离](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB.md)  **`力扣72  编辑距离 （Hard）`**
+> 
 > <h3 style="color:blue">数据结构方面</h3>
->
-> **`树`**
->
-> 复习相关概念，熟悉各种**`遍历方式`**的框架 ( 层次遍历、前中后序遍历 )
->
-> 复习**`DFS和BFS`**
->
-> 找不找题做自己决定，若找了，放在题解中，题解中要看到数据结构部分的笔记
+> 
+>**`树`**
+> 
+>复习相关概念，熟悉各种**`遍历方式`**的框架 ( 层次遍历、前中后序遍历 )
+> 
+>复习**`DFS和BFS`**
+> 
+>找不找题做自己决定，若找了，放在题解中，题解中要看到数据结构部分的笔记
