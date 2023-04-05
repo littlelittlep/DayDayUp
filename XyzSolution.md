@@ -354,3 +354,154 @@ public:
 > ```
 >
 > 
+
+# 2023.4.5 力扣76 最小覆盖字串
+
+## [`76、最小覆盖字串`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
+
+> **思路**
+>
+> 1. 快慢指针均从0开始
+> 2. 快指针移动到满足覆盖子串以后，移动慢指针到不满足覆盖字串
+> 3. 移动快指针至满足覆盖字串
+> 4. 比较和之前保存结果的长度，当前更短则更新结果
+>
+> `踩坑`
+>
+> - 首先是几个循环的流程写乱了
+>
+>   见流程图
+>
+>   ![image-20230405191255115](assets/image-20230405191255115.png)
+>
+> - 其次选择什么结构表示覆盖子串
+>
+>   一开始选择的set\<char\>，发现还应该记录当前子串中各个字符的数量，想着选择set\<\<char，int>\>，发现遍历之类的处理不如map方便，最终选择map
+>
+> - 然后是几个判断条件位置（具体见代码中说明）
+>
+> ```C++
+> class Solution {
+> private:
+>     //----------------踩坑2------------------------------
+>     bool cmpMap(map<char,int> &tS, map<char,int> &cmpS){
+>         map<char,int>::iterator tI,cI;
+>         bool flag=true;
+>         for(tI=tS.begin(),cI=cmpS.begin();tI!=tS.end();tI++,cI++){
+>             if(*tI>*cI) {
+>                 flag=false;
+>                 return flag;
+>             }
+>         }
+>         return flag;
+>     }
+> public:
+>     string minWindow(string s, string t) {
+>         //初始化res的长度大于s
+>         string res=s+"a";
+>         //初始化i=0；j往后移动，一旦满足set中所有的字符和数量，i往前移动，然后再重复此过程
+>         //存目标子串中每个字符的个数
+>         map<char,int> tS;\
+>         //当前子串中各个目标字符的个数
+>         map<char,int> cmpS;
+>         //将字符作为键，数量作为键值，初始化两个map
+>         for(int i=0;i<t.size();i++){
+>             tS[t[i]]++;
+>             cmpS[t[i]]=0;
+>         }
+>         //cout<<cmpS.size()<<" "<<tS.size()<<endl;
+>         int i=0,j=0;
+>         //---------------------踩坑3.1--------------------------------思考选择 j  作为判断结束的条件 
+>         while (j<s.size()) {
+> 			//cout << "outer:" << i << " " << j << endl;
+> 			map<char, int>::iterator it = tS.find(s[j]);
+> 			if (it != tS.end()) {
+> 				cmpS[s[j]]++;
+> 				// 判断是否已经包含t中所有的字符，如果是且当前字串长度小于目前的结果，更新结果，否则不更新
+>                   //---------------------踩坑3.2--------------------------------不能在这个while中判断 if(j - i + 1 < res.size())
+> 				while (cmpMap(tS,cmpS)) {
+> 					//cout << "inner:" << i << " " << j << endl;
+> 					if(j - i + 1 < res.size()) res = s.substr(i, j - i + 1);
+> 					map<char, int>::iterator it = tS.find(s[i]);
+> 					if (it != tS.end()) cmpS[s[i]]--;
+> 					i++;
+> 				}
+> 			}
+> 			//j增大到s.size,说明只能移动i，--------------------解释踩坑3.1----------------
+> 		    j++;
+> 		}
+>         if(res.size()==s.size()+1) return "";
+>         else return res;
+>     }
+> };
+> ```
+>
+> **可恶的是最后一个测试用例超时了**
+>
+> ![image-20230405191332114](assets/image-20230405191332114.png)
+>
+> 于是贴上别人的题解。。。。。。。。。。。。。。。
+>
+> ```C++
+> class Solution {
+> public:
+> // 本题使用滑动窗口求解，即两个指针 l 和 r 都是从最左端向最右端移动，且 l 的位置一定在 r 的左边或重合。
+> //注意本题虽然在 for 循环里出现了一个 while 循环，但是因为 while 循环负责移动 l 指针，
+> //且 l 只会从左到右移动一次，因此总时间复杂度仍然是 O(n)。
+> //本题使用了长度为 128的数组来映射字符，也可以用哈希表替代；
+> //其中 chars 表示目前每个字符缺少的数量，flag 表示每个字符是否在 T 中存在。
+>     string minWindow(string s, string t) {
+>         //这里是int
+>         vector<int>chars(128,0);
+>         //这里是bool
+>         vector<bool>flags(128,0);
+>         //遍历一遍t这个字符串
+>         for(int i =0;i<t.size();i++)
+>         {
+>             chars[t[i]]++;
+>             flags[t[i]] = true;
+>         }
+> 
+>         // 移动滑动窗口，不断更改统计数据
+>         int cnt = 0;
+>         int l = 0;
+>         //这里是为了最后取字符串的开头
+>         int  min_l = 0;
+>         //最小字符串长度
+>         int  min_size = s.size() + 1;
+>         //遍历s字符串 r在这里
+>         for(int r=0;r<s.size();r++)
+>         {
+>             //确定s这个字符在t中存在，如果存在就更新cahrs的值，直到chars值为0，则结束
+>             if(flags[s[r]])
+>             {
+>                 if(--chars[s[r]]>=0)
+>                 {
+>                     ++cnt;
+>                 }
+>                 //cnt和t的字符串长度一致的时候，就证明已经找到了包含t子串的子字符串了
+>                 //需要进行缩减处理
+>                 while(cnt == t.size())
+>                 {
+>                     //更新l和min_size
+>                     if(r-l+1 < min_size)
+>                     {
+>                         //min_l 是左值
+>                         min_l =l;
+>                         min_size = r-l+1;
+>                     }
+>                     //这里确定是不是到了符合t的部分
+>                     if (flags[s[l]] && ++chars[s[l]] > 0) {
+>                         --cnt;
+>                     }
+>                     ++l;
+>                 }
+>             }
+>         }
+>         return min_size > s.size()? "": s.substr(min_l, min_size);
+> 
+>     }
+> };
+> ```
+>
+> 
