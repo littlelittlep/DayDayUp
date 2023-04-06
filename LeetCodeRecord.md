@@ -101,7 +101,15 @@
 
 ### 4.5 如你所愿 清明放假
 
+### 4.6 Day8
 
-
-
+> <h3 style="color:red">加把劲哟！</h3>
+>
+> [动态规划之四字键盘](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E5%9B%9B%E9%94%AE%E9%94%AE%E7%9B%98.md)（本来想作为题目的，结果发现需要会员才能做这题，因此阅读本文章即可，自己想想思路，不必做题了）
+>
+> 1. [**`题目1—— 力扣887 鸡蛋掉落（Hard）`**](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E9%97%AE%E9%A2%98.md)
+>
+> <h3 style="color:blue">数据结构方面</h3>
+>
+> 树的数据结构方面找一个编程题做做
 

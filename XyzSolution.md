@@ -505,3 +505,149 @@ public:
 > ```
 >
 > 
+
+## [`2、两数相加（链表）`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
+
+> **思路**
+>
+> ```C++
+> /**
+>  * Definition for singly-linked list.
+>  * struct ListNode {
+>  *     int val;
+>  *     ListNode *next;
+>  *     ListNode() : val(0), next(nullptr) {}
+>  *     ListNode(int x) : val(x), next(nullptr) {}
+>  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+>  * };
+>  */
+> class Solution {
+> private:
+>     //用于返回结果
+>     ListNode* head=new ListNode(0);
+>     //用于新建的结果的当前节点
+>     ListNode* end=head;
+>     //用于记录进位
+>     int add=0;
+> public:
+>     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+>         //均不为空，先生成新节点计算当前值，然后
+>         while(l1!=nullptr&&l2!=nullptr){
+>             ListNode* newN=new ListNode(add);
+>             add=(l1->val+l2->val+newN->val)/10;
+>             newN->val=(l1->val+l2->val+newN->val)%10;
+>             //----------------------坑1----------------一开始这两行代码写在了l1->next后面，逻辑错了
+>             end->next=newN;
+>             end=newN;
+>             //均空说明两个长度相等，要判断有没有进位
+>             if(l1->next==nullptr&&l2->next==nullptr&&add==1){
+>                 ListNode* newFinal=new ListNode(add);
+>                 end->next=newFinal;
+>             }
+>             l1=l1->next;
+>             l2=l2->next;
+>         }
+>         //l1更长
+>         while(l1!=nullptr){
+>             ListNode* newN1=new ListNode(add);
+>             add=(l1->val+newN1->val)/10;
+>             newN1->val=(l1->val+newN1->val)%10;
+>             end->next=newN1;
+>             end=newN1;
+>             if(l1->next==nullptr) {
+>                 if(add==1){
+>                     ListNode* newN11=new ListNode(add);
+>                     end->next=newN11;
+>                 }
+>                 break;
+>             }
+>             l1=l1->next;
+>         }
+>         //l2更长
+>         while(l2!=nullptr){
+>             ListNode* newN2=new ListNode(add);
+>             add=(l2->val+newN2->val)/10;
+>             newN2->val=(l2->val+newN2->val)%10;
+>             end->next=newN2;
+>             end=newN2;
+>             if(l2->next==nullptr){
+>                 if(add==1){
+>                     ListNode* newN21=new ListNode(add);
+>                     end->next=newN21;
+>                 }
+>                 break;
+>             }
+>             l2=l2->next;
+>         }
+>         //head是一个虚拟节点
+>         return head->next;
+>     }
+> };
+> ```
+>
+> **`官方题解写的简洁多了`**
+>
+> ```C++
+> class Solution {
+> public:
+>     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+>         ListNode *head = nullptr, *tail = nullptr;
+>         int carry = 0;
+>         while (l1 || l2) {
+>             int n1 = l1 ? l1->val: 0;
+>             int n2 = l2 ? l2->val: 0;
+>             int sum = n1 + n2 + carry;
+>             if (!head) {
+>                 head = tail = new ListNode(sum % 10);
+>             } else {
+>                 tail->next = new ListNode(sum % 10);
+>                 tail = tail->next;
+>             }
+>             carry = sum / 10;
+>             if (l1) {
+>                 l1 = l1->next;
+>             }
+>             if (l2) {
+>                 l2 = l2->next;
+>             }
+>         }
+>         if (carry > 0) {
+>             tail->next = new ListNode(carry);
+>         }
+>         return head;
+>     }
+> };
+> //别人的题解
+> class Solution {
+> public:
+>     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+>         ListNode* node = nullptr;
+>         ListNode** n = &node;
+>         int ca = 0;
+>         while(l1 || l2 || ca){
+>             int sum = ca;
+>             sum += l1? l1->val: 0;
+>             sum += l2? l2->val: 0;
+>             ca = sum / 10;
+>             *n = new ListNode(sum % 10);
+>             n = &((*n)->next);
+>             if(l1) l1 = l1->next;
+>             if(l2) l2 = l2->next;
+>         }
+>         return node;
+>     }
+> };
+> //递归写法
+> class Solution {
+> public:
+>     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2, int carry = 0) {
+>         if(l1 == l2 && l1 == nullptr && carry == 0)
+>             return nullptr;
+>         int tmp = carry + (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
+>         carry = tmp / 10;
+>         return new ListNode(tmp%10, addTwoNumbers((l1 ? l1->next : nullptr), (l2 ? l2->next : nullptr), carry));
+>     }
+> };
+> ```
+>
+> 
