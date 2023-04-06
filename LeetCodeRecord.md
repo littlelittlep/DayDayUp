@@ -4,7 +4,7 @@
 
 # 力扣上的动态规划题目
 
-![img](https://pic2.zhimg.com/v2-95319a545796ddd0fbebf5840a12f8f5_r.jpg)
+![img](assets/v2-95319a545796ddd0fbebf5840a12f8f5_r.jpg)
 
 # WEEK1
 
