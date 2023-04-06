@@ -506,7 +506,7 @@ public:
 >
 > 
 
-## [`2、两数相加（链表）`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
+## [`2、两数相加（链表 Medium）`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
 
 > **思路**
 >
@@ -646,6 +646,147 @@ public:
 >         int tmp = carry + (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
 >         carry = tmp / 10;
 >         return new ListNode(tmp%10, addTwoNumbers((l1 ? l1->next : nullptr), (l2 ? l2->next : nullptr), carry));
+>     }
+> };
+> ```
+>
+> 
+
+## `19、删除链表的倒数第N个结点（链表 Medium）`
+
+> 这题感觉还挺简单的，就是要注意如果删除的是第一个结点的情况
+>
+> ```C++
+> /**
+>  * Definition for singly-linked list.
+>  * struct ListNode {
+>  *     int val;
+>  *     ListNode *next;
+>  *     ListNode() : val(0), next(nullptr) {}
+>  *     ListNode(int x) : val(x), next(nullptr) {}
+>  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+>  * };
+>  */
+> class Solution {
+> public:
+>     ListNode* removeNthFromEnd(ListNode* head, int n) {
+>         ListNode* numptr=head;
+>         ListNode* res=head;
+>         int num=0;
+>         //计算当前链表有多长
+>         while(numptr->next!=nullptr){
+>             num++;
+>             numptr=numptr->next;
+>         }
+>         num++;
+>         //遍历到倒数第n个结点的前一个结点，注意第一个结点没有前一个结点
+>         for(int i=0;i<num-n-1;i++){
+>             head=head->next;
+>         }
+>         //如果删除的结点是第一个结点
+>         if(num==n){
+>             head=head->next;
+>             return head;
+>         }
+>         //注意有可能删除的结点没有后一个结点
+>         if(head->next!=nullptr) head->next=head->next->next;
+>         else head->next=nullptr;
+>         return res;
+>     }
+> };
+> ```
+>
+> 这里可以定义两个快慢指针，之间相差n个距离，当快指针到达结尾，慢指针刚好到所要求的位置，这样就不用求长度了
+
+# 2023.4.6 
+
+## **`1017 负二进制转换（Medium）`**
+
+> ```C++
+> class Solution {
+>     string res;
+> public:
+>     string baseNeg2(int n) {
+>         //0 的情况
+>         if(n==0) return "0";
+>         //这里需要学习负数取余的特点，负数取余要求商尽量接近0，以-9为例
+>         //-9=(-2)*4+(-1) （正确的取余）
+>         //但是本题中，因为每一个位为正数，所以上式写成 -9=(-2)*(4+1)+1
+>         while(n/(-2)!=0){
+>             //进行-1的转换
+>             if(n%(-2)==-1){
+>                 n=n/(-2)+1;
+>                 res="1"+res;
+>                 //cout<<"n:"<<n<<"   余数："<<1<<"  商："<<n<<endl;
+>                 continue;
+>             }
+>             //cout<<"n:"<<n<<"   余数："<<n%(-2)<<"  商："<<n/(-2)<<endl;
+>             res=to_string(n%(-2))+res;
+>             n=n/(-2);
+>         }
+>         //当商==0时，如果取余为-1，需要再转换一次，然后变成一个小于2的数，相当于回归到商为0，但是余数为1的情况
+>         if(n%(-2)==-1){
+>                 n=n/(-2)+1;
+>                 res="1"+res;
+>                 //cout<<"n:"<<n<<"   余数："<<1<<"  商："<<n<<endl;
+>         }
+>         //当商==0且余数为1进行的处理
+>         if(n%(-2)!=0) res="1"+res;
+>         return res;
+>     }
+> };
+> ```
+>
+> （来源于力扣每日一题）
+
+## `2427 公因子的数目（Simple）`
+
+> 来源于力扣每日一题
+>
+> ```C++
+> class Solution {
+> public:
+>     int commonFactors(int a, int b) {
+>     //直接用Set暴力求交集
+>         set<int> aS,bS;
+>         set<int> res;
+>         for(int i=1;i<=sqrt(a);i++){
+>             if(a%i==0) {
+>                 aS.insert(i);
+>                 if(a%(a/i)==0)
+>                 aS.insert(a/i);
+>             }
+>         }
+>         for(int i=1;i<=sqrt(b);i++){
+>             if(b%i==0) {
+>                 bS.insert(i);
+>                 if(b%(b/i)==0)
+>                 bS.insert(b/i);
+>             }
+>         }
+>         set_intersection(aS.begin(), aS.end(), bS.begin(), bS.end(), inserter(res, res.begin()));
+>         return res.size();
+>     }
+> };
+> ```
+>
+> ### 官方题解
+>
+> ```C++
+> //如果一个数是它们的公共因子那么也一定是它们最大公约数的因子
+> class Solution {
+> public:
+>     int commonFactors(int a, int b) {
+>         int c = gcd(a, b), ans = 0;
+>         for (int x = 1; x * x <= c; ++x) {
+>             if (c % x == 0) {
+>                 ++ans;
+>                 if (x * x != c) {
+>                     ++ans;
+>                 }
+>             }
+>         }
+>         return ans;
 >     }
 > };
 > ```
