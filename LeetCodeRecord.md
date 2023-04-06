@@ -18,7 +18,7 @@
 
 > **今天内容**   
 >
-> <h3 style="color:red">昨天的kpi都完成的不好，今天赶上！加油！</h3>
+> <p style="color:red" ><b>昨天的kpi都完成的不好，今天赶上！加油！</b></p>
 >
 > 1. **`题目1`** [动态规划解题套路框架](https://labuladong.github.io/algo/di-ling-zh-bfe1b/dong-tai-g-1e688/)  **`力扣322  零钱兑换`**
 >
@@ -40,13 +40,13 @@
 
 ### 4.1 Day5
 
-> <h3 style="color:red">愚人节快乐！！！加油，明天截至需要补足所有本周拖欠的 kpi 哦哦哦！干巴爹！！！</h3>
+> <p style="color:red" ><b>愚人节快乐！！！加油，明天截至需要补足所有本周拖欠的 kpi 哦哦哦！干巴爹！！！</b></p>
 >
 > 1. **`题目1`** [一个方法团灭nSum问题](https://labuladong.github.io/algo/di-ling-zh-bfe1b/yi-ge-fang-894da/)   **`力扣15 三数之和`**
 
 ### 4.2 ( Rest Day)
 
-> <h3 style="color:red">虽然是休息日，但是也要学一下，任务如下</h3>
+> <p style="color:red" ><b>虽然是休息日，但是也要学一下，任务如下</b></p>
 >
 > 1. 补足本周的题目，然后整理自己的题解，**`今天截至必须更新上周所有题自己做的题解`**
 > 2. 记得看完博客，写一下**本周总结**在自己的题解笔记中（总结可以包括的内容如下，**仅供参考**的内容哦，**自己觉得总结到位就行，不强求**）
@@ -60,7 +60,7 @@
 
 ### 4.3 Day6 
 
-> > <h3 style="color:red">新的一周开始啦！！！</h3>
+> > <p style="color:red" ><b>新的一周开始啦！！！</b></p>
 > >
 > > 首先是上一周的复习文章链接如下
 > >
@@ -74,7 +74,7 @@
 > > 3. **附加任务（选做）**
 > >    - **`题目1`** [滑动窗口解题框架](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E7%AE%97%E6%B3%95%E6%80%9D%E7%BB%B4%E7%B3%BB%E5%88%97/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%8A%80%E5%B7%A7.md)  **`力扣76  最小覆盖子串（Hard）`**
 >
-> <h3 style="color:blue">数据结构方面（想了想还是先复习数据结构，后面再搞排序）</h3>
+> <p style="color:blue" ><b>数据结构方面（想了想还是先复习数据结构，后面再搞排序）</b></p>
 >
 > **`力扣可以查找相关题型`**
 >
@@ -87,13 +87,13 @@
 
 ### 4.4 Day7
 
-> <h3 style="color:red">昨天的kpi我今天是一点也没完成，可恶！！！</h3>
+> <p style="color:red"><b>昨天的kpi我今天是一点也没完成，可恶！！！</b></p>
 >
 > **今天的任务**
 >
 > 1. **`题目1`** [编辑距离](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB.md)  **`力扣72  编辑距离 （Hard）`**
 > 
-> <h3 style="color:blue">数据结构方面</h3>
+> <p style="color:blue"><b>数据结构方面</bb></p>
 > 
 >**`树`**
 > 
@@ -107,13 +107,13 @@
 
 ### 4.6 Day8
 
-> <h3 style="color:red">加把劲哟！</h3>
+> <p style="color:red"><b>加把劲哟！</b></p>
 >
 > [动态规划之四字键盘](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E5%9B%9B%E9%94%AE%E9%94%AE%E7%9B%98.md)（本来想作为题目的，结果发现需要会员才能做这题，因此阅读本文章即可，自己想想思路，不必做题了）
 >
 > 1. [**`题目1—— 力扣887 鸡蛋掉落（Hard）`**](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/%E9%AB%98%E6%A5%BC%E6%89%94%E9%B8%A1%E8%9B%8B%E9%97%AE%E9%A2%98.md)
 >
-> <h3 style="color:blue">数据结构方面</h3>
+> <p style="color:blue"><b>数据结构方面</bb></p>
 >
 > 树的数据结构方面找一个编程题做做
 
