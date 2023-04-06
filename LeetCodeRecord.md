@@ -2,6 +2,10 @@
 
 <h3 align="right">Wish we a bright future! </h3>
 
+# 力扣上的动态规划题目
+
+![img](https://pic2.zhimg.com/v2-95319a545796ddd0fbebf5840a12f8f5_r.jpg)
+
 # WEEK1
 
 ### 3.28 Day1
