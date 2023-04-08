@@ -129,6 +129,8 @@
 
 ### 4.8 Day10
 
-> <p style="color:red"><b>今天布置一道Medium >_< 和前缀和有关 </b></p>
+> <p style="color:red"><b>今天布置一道Medium >_< 和前缀和有关，可以看提供博客的前缀和教程（但是没有选择它的例题） </b></p>
 >
 > 1. **`题目1—— 力扣304 二维区域和检索-矩阵不可变（Medium）`**
+>
+> [博客前缀和链接](https://github.com/jiajunhua/labuladong-fucking-algorithm/blob/master/%E7%AE%97%E6%B3%95%E6%80%9D%E7%BB%B4%E7%B3%BB%E5%88%97/%E5%89%8D%E7%BC%80%E5%92%8C%E6%8A%80%E5%B7%A7.md)
