@@ -1,8 +1,10 @@
 # 题解
 
-# 2023.3.28 力扣28（字符串匹配KMP）、力扣486、877（博弈动态规划）
+# WEEK 1
 
-## [`28、找出字符串中第一个匹配项的下标`](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+##  2023.3.28
+
+### [`28、找出字符串中第一个匹配项的下标`](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
 
 ```C++
 class Solution {
@@ -40,7 +42,7 @@ public:
 //JS代码将 int 换成 let 而已，故不再写 js 版本代码
 ```
 
-## [`486、预测赢家`](https://leetcode.cn/problems/predict-the-winner/)
+### [`486、预测赢家`](https://leetcode.cn/problems/predict-the-winner/)
 
 ```C++
 class Solution {
@@ -84,9 +86,9 @@ public:
 };
 ```
 
-# 2023.3.29 力扣322（零钱兑换）、力扣
+## 2023.3.29 
 
-## [`322、零钱兑换`](https://leetcode.cn/problems/coin-change/)
+### [`322、零钱兑换`](https://leetcode.cn/problems/coin-change/)
 
 ```C++
 class Solution {
@@ -116,7 +118,7 @@ public:
 };
 ```
 
-## [`300、最长递增子序列`](https://leetcode.cn/problems/longest-increasing-subsequence/submissions/)
+### [`300、最长递增子序列`](https://leetcode.cn/problems/longest-increasing-subsequence/submissions/)
 
 ```C++
 //此题的难点在于如何定义dp
@@ -160,9 +162,9 @@ public:
 > > - 用vector创建一个数组放每一个堆的堆顶，对于每一张牌，用二分查找找到它应插入的位置，如果找不到，新建一个堆
 > > - 遍历完所有牌以后，数组的长度就是最长递增子序列的长度了
 
-# 2023.3.31 力扣354（俄罗斯套娃信封）
+## 2023.3.31 力扣354
 
-## [`354、俄罗斯套娃信封`](https://leetcode.cn/problems/russian-doll-envelopes/)
+### [`354、俄罗斯套娃信封`](https://leetcode.cn/problems/russian-doll-envelopes/)
 
 > **思路**
 >
@@ -227,7 +229,7 @@ public:
 >
 > 
 
-## [`354、N皇后问题`](https://leetcode.cn/problems/n-queens/submissions/)
+### [`354、N皇后问题`](https://leetcode.cn/problems/n-queens/submissions/)
 
 > **思路**（标记红色的是此题感觉比较难的）
 >
@@ -298,9 +300,9 @@ public:
 >
 > 
 
-# 2023.4.1 力扣15 三数之和
+## 2023.4.1
 
-## [`15、三数之和`](https://leetcode.cn/problems/3sum/)
+### [`15、三数之和`](https://leetcode.cn/problems/3sum/)
 
 > **思路**
 >
@@ -355,9 +357,13 @@ public:
 >
 > 
 
-# 2023.4.5 力扣76 最小覆盖字串
 
-## [`76、最小覆盖字串`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
+
+# WEEK 2
+
+## 2023.4.5 
+
+### [`76、最小覆盖字串`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
 
 > **思路**
 >
@@ -506,7 +512,7 @@ public:
 >
 > 
 
-## [`2、两数相加（链表 Medium）`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
+### [`2、两数相加（链表 Medium）`](https://leetcode.cn/problems/minimum-window-substring/submissions/)
 
 > **思路**
 >
@@ -652,7 +658,7 @@ public:
 >
 > 
 
-## `19、删除链表的倒数第N个结点（链表 Medium）`
+### `19、删除链表的倒数第N个结点（链表 Medium）`
 
 > 这题感觉还挺简单的，就是要注意如果删除的是第一个结点的情况
 >
@@ -698,9 +704,9 @@ public:
 >
 > 这里可以定义两个快慢指针，之间相差n个距离，当快指针到达结尾，慢指针刚好到所要求的位置，这样就不用求长度了
 
-# 2023.4.6 
+## 2023.4.6 
 
-## **`1017、负二进制转换（Medium）`**
+### **`1017、负二进制转换（Medium）`**
 
 > ```C++
 > class Solution {
@@ -739,7 +745,7 @@ public:
 >
 > （来源于力扣每日一题）
 
-## `2427、公因子的数目（Simple）`
+### `2427、公因子的数目（Simple）`
 
 > 来源于力扣每日一题
 >
@@ -793,9 +799,13 @@ public:
 >
 > 
 
-# 2023.4.10
 
-## **`1040、移动石子直到连续 II（Medium）`**
+
+# WEEK 3
+
+## 2023.4.10
+
+### **`1040、移动石子直到连续 II（Medium）`**
 
 > **思路见代码中**
 >
@@ -841,7 +851,7 @@ public:
 >
 > 
 
-## `304、二维区域和检索 - 矩阵不可变`
+### `304、二维区域和检索 - 矩阵不可变`
 
 > **思路见代码中**
 >
@@ -893,47 +903,94 @@ public:
 >
 > 空间复杂度也是O(mn)，用来存储矩阵pre
 
-## `887 鸡蛋掉落（hard)`
+### `887、鸡蛋掉落（hard)`
 
 > **第一版错误思路**——————————二分法
 >
 > ```C++
 > class Solution {
 > public:
->     //对于前k-1个鸡蛋，用二分法，对于最后一个鸡蛋只能从最底层开始尝试
+>  //对于前k-1个鸡蛋，用二分法，对于最后一个鸡蛋只能从最底层开始尝试
+>  int superEggDrop(int k, int n) {
+>      cout<<"进入----"<<k<<" "<<n<<endl;
+>      //如果只有一个鸡蛋，只能从下往上试n次
+>      if(k==1){
+>          return n;
+>      }
+>      else{
+>          //楼层为0，已经知道结果，直接返回
+>          if(n==0){
+>              cout<<"n==0 "<<endl;
+>              return 0;
+>          }
+>          if(n==1){
+>              cout<<"n==1"<<endl;
+>              return 1;
+>          }
+>          //偶数层的情况
+>          //在第n/2层扔鸡蛋，如果碎了，那么应该是（k-1,n/2-1），如果没碎，应该是（k,n/2）;
+>          //在第n/2+1层扔鸡蛋，如果碎了，那么应该是（k-1,n/2），如果没碎，应该是（k,n/2-1）;
+>          //从以上分析来看，应该选择第一种扔鸡蛋
+>          //如果第n/2+1层的没碎，递归为（k,n/2）或者
+>          else if(n/2==(n-n/2)){
+>              return 1+min(max(superEggDrop(k-1,n/2-1),superEggDrop(k,n/2)),max(superEggDrop(k-1,n/2),superEggDrop(k,n/2-1)));
+>          }
+>          //奇数层的情况
+>          //n/2+1层碎了，应该是（k-1,n/2+1），没碎则是（k,n/2-1）;
+>          //中间层碎了，应该是（k-1,n/2）,中间层没碎，应该是（k,n/2）;(后来经过测试用例，发现这种思路是不对的，选择再下面一层，反而有可能操作次数更少)
+>          //n/2-1层碎了，应该是（k-1,n/2-1），没碎则是（k,n/2+1）;
+>          else if(n/2<(n-n/2)){
+>              return 1+min(max(superEggDrop(k,n/2+1),superEggDrop(k-1,n/2-1)),max(superEggDrop(k-1,n/2),superEggDrop(k,n/2)));
+>          }
+>          return 0;
+>      }
+>  }
+> };
+> ```
+>
+> **好的，我投降，看题解了（下跪.jpg）**
+>
+> ```C++
+> class Solution {
+> public:
+>     //备忘录
+>     unordered_map<int,int> memo;
 >     int superEggDrop(int k, int n) {
->         cout<<"进入----"<<k<<" "<<n<<endl;
->         //如果只有一个鸡蛋，只能从下往上试n次
->         if(k==1){
->             return n;
->         }
->         else{
->             //楼层为0，已经知道结果，直接返回
+>         //备忘录键值如此确定是为了确保没有重复键值（因为 1<=k<=100 所以只需要通过将n*100 代表千位及以上的位数代表楼层，百位及以下代表鸡蛋数，可以确定是唯一值
+>         //如果备忘录中已经有值，直接返回，没有值必须算
+>         if(memo.find(n*100+k)==memo.end()){
+>             int res;
+>             //如果n==0说明已经知道结果，返回0
 >             if(n==0){
->                 cout<<"n==0 "<<endl;
->                 return 0;
+>                 res=0;
 >             }
->             if(n==1){
->                 cout<<"n==1"<<endl;
->                 return 1;
+>              //如果只有一个鸡蛋，只能从下往上试n次
+>             else if(k==1){
+>                 res=n;
 >             }
->             //偶数层的情况
->             //在第n/2层扔鸡蛋，如果碎了，那么应该是（k-1,n/2-1），如果没碎，应该是（k,n/2）;
->             //在第n/2+1层扔鸡蛋，如果碎了，那么应该是（k-1,n/2），如果没碎，应该是（k,n/2-1）;
->             //从以上分析来看，应该选择第一种扔鸡蛋
->             //如果第n/2+1层的没碎，递归为（k,n/2）或者
->             else if(n/2==(n-n/2)){
->                 return 1+min(max(superEggDrop(k-1,n/2-1),superEggDrop(k,n/2)),max(superEggDrop(k-1,n/2),superEggDrop(k,n/2-1)));
+>             else{
+>                     int l=1,h=n;
+>                     //while循环是为了找到某个楼层，使得上下两部分的次数最接近，因为要找到特定的某一个楼层，要让两部分的值尽可能相近
+>                     while(l+1<h){
+>                         int mid=(l+h)/2;
+>                         int temp1=superEggDrop(k-1,mid-1);
+>                         int temp2=superEggDrop(k,n-mid);
+>                         if(temp1<temp2){
+>                             l=mid;
+>                         }
+>                         else if(temp1>temp2){
+>                             h=mid;
+>                         }
+>                         else if(temp1==temp2){
+>                             l=h=mid;
+>                         }
+>                     }
+>                     //找到相应位置的 l 和 h 以后，需要取两个中的较小值
+>                     res=1+min(max(superEggDrop(k-1,l-1),superEggDrop(k,n-l)),max(superEggDrop(k-1,h-1),superEggDrop(k,n-h)));
 >             }
->             //奇数层的情况
->             //n/2+1层碎了，应该是（k-1,n/2+1），没碎则是（k,n/2-1）;
->             //中间层碎了，应该是（k-1,n/2）,中间层没碎，应该是（k,n/2）;(后来经过测试用例，发现这种思路是不对的，选择再下面一层，反而有可能操作次数更少)
->             //n/2-1层碎了，应该是（k-1,n/2-1），没碎则是（k,n/2+1）;
->             else if(n/2<(n-n/2)){
->                 return 1+min(max(superEggDrop(k,n/2+1),superEggDrop(k-1,n/2-1)),max(superEggDrop(k-1,n/2),superEggDrop(k,n/2)));
->             }
->             return 0;
+>             memo[n*100+k]=res;
 >         }
+>         return memo[n*100+k];
 >     }
 > };
 > ```
