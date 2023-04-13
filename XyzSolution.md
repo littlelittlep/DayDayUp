@@ -700,7 +700,7 @@ public:
 
 # 2023.4.6 
 
-## **`1017 负二进制转换（Medium）`**
+## **`1017、负二进制转换（Medium）`**
 
 > ```C++
 > class Solution {
@@ -739,7 +739,7 @@ public:
 >
 > （来源于力扣每日一题）
 
-## `2427 公因子的数目（Simple）`
+## `2427、公因子的数目（Simple）`
 
 > 来源于力扣每日一题
 >
@@ -787,6 +787,153 @@ public:
 >             }
 >         }
 >         return ans;
+>     }
+> };
+> ```
+>
+> 
+
+# 2023.4.10
+
+## **`1040、移动石子直到连续 II（Medium）`**
+
+> **思路见代码中**
+>
+> ```C++
+> class Solution {
+> public:
+>     vector<int> numMovesStonesII(vector<int>& stones) {
+>         sort(stones.begin(),stones.end());
+>         int n=stones.size();
+>         //刚好连续，直接返回结果
+>         if(stones[n-1]-stones[0]+1==n) {
+>             vector<int> res={0,0};
+>             return res;
+>         }
+>     //将stones[0]移动到stones[1]后面一个位置（或者将stones[n-1]移动到stones[n-2]前一个位置）
+>     //从此以后最左（最右）一定有两个相邻的石子，可以交互跳到最左（最右）的空位置，步数为空位置
+>     //因此最大值取其中较大的
+>         int ma=max(stones[n-1]-stones[1],stones[n-2]-stones[0])-(n-1)+1;
+>         int mi=n;
+>         for(int i=0,j=0;i<n&&j+1<n;i++){
+>             //定义一个长度为n的滑动窗口，其中左端点一定有石头
+>             while(j+1<n&&stones[j+1]-stones[i]+1<=n){
+>                 j++;
+>             }
+>             //如果石头的个数为n-1，并且滑动窗口的右端点有石头
+>             if(j-i+1==n-1&&stones[j]-stones[i]+1==n-1){
+>                 mi=min(mi,2);
+>             }
+>             else{
+>                 //否则等于最小值或者窗口长度减石子个数中的较小值
+>                 mi=min(mi,n-(j-i+1));
+>             }
+>         }
+>         vector<int> res={mi,ma};
+>         return res;
+>     }
+> };
+> ```
+>
+> 得吐槽一下这题，我觉得挺难的，很难分析出来，看题解有人说这曾经是Medium中的Top，我也就放心了，哈哈哈。
+>
+> 思考了很久，还是看了官方题解打的代码。。。。
+>
+> 
+
+## `304、二维区域和检索 - 矩阵不可变`
+
+> **思路见代码中**
+>
+> ```C++
+> class NumMatrix {
+> private:
+>     vector<vector<int>> pre;
+> public:
+>     //一开始使用两层循环直接遍历超出时间复杂度
+>     //应该考虑使用前缀和，使用右下（p，q）表示（0，0）到（p，q）的和
+>     //初始化整个矩阵，首先初始第一行和第一列，后面的（i，j）=当前格的新数据[i][j]+左边区域（i，j-1）+上边区域的和（i-1，j）-左上重叠区域和（i-1，j-1）
+>     NumMatrix(vector<vector<int>>& matrix) {
+>         pre=matrix;
+>         if(pre[0].size()>1){
+>             for(int i=1;i<pre[0].size();i++){
+>                 pre[0][i]=pre[0][i-1]+pre[0][i];
+>             }
+>         }
+>         if(pre.size()>1){
+>             for(int j=1;j<pre.size();j++){
+>                 pre[j][0]=pre[j-1][0]+pre[j][0];
+>             }
+>         }
+>         if(pre[0].size()>1&&pre.size()>1){
+>             for(int i=1;i<pre.size();i++){
+>                 for(int j=1;j<pre[0].size();j++){
+>                     pre[i][j]=pre[i][j]+pre[i-1][j]+pre[i][j-1]-pre[i-1][j-1];
+>                 }
+>             }
+>         }
+>     }
+>     int sumRegion(int row1, int col1, int row2, int col2) {
+>         if(row1==0&&col1==0) return pre[row2][col2];
+>         //对于左上（i，j）右下（m，n）的区域=（m，n）-（m，j-1）-（i-1，n）+(i-1，j-1)
+>         if(row1==0) return pre[row2][col2]-pre[row2][col1-1];
+>         else if(col1==0) return pre[row2][col2]-pre[row1-1][col2];
+>         else return pre[row2][col2]-pre[row2][col1-1]-pre[row1-1][col2]+pre[row1-1][col1-1];
+>     }
+> };
+> 
+> /**
+>  * Your NumMatrix object will be instantiated and called as such:
+>  * NumMatrix* obj = new NumMatrix(matrix);
+>  * int param_1 = obj->sumRegion(row1,col1,row2,col2);
+>  */
+> ```
+>
+> 时间复杂度应该是O(mn)，主要是用于遍历矩阵进行计算区域和
+>
+> 空间复杂度也是O(mn)，用来存储矩阵pre
+
+## `887 鸡蛋掉落（hard)`
+
+> **第一版错误思路**——————————二分法
+>
+> ```C++
+> class Solution {
+> public:
+>     //对于前k-1个鸡蛋，用二分法，对于最后一个鸡蛋只能从最底层开始尝试
+>     int superEggDrop(int k, int n) {
+>         cout<<"进入----"<<k<<" "<<n<<endl;
+>         //如果只有一个鸡蛋，只能从下往上试n次
+>         if(k==1){
+>             return n;
+>         }
+>         else{
+>             //楼层为0，已经知道结果，直接返回
+>             if(n==0){
+>                 cout<<"n==0 "<<endl;
+>                 return 0;
+>             }
+>             if(n==1){
+>                 cout<<"n==1"<<endl;
+>                 return 1;
+>             }
+>             //偶数层的情况
+>             //在第n/2层扔鸡蛋，如果碎了，那么应该是（k-1,n/2-1），如果没碎，应该是（k,n/2）;
+>             //在第n/2+1层扔鸡蛋，如果碎了，那么应该是（k-1,n/2），如果没碎，应该是（k,n/2-1）;
+>             //从以上分析来看，应该选择第一种扔鸡蛋
+>             //如果第n/2+1层的没碎，递归为（k,n/2）或者
+>             else if(n/2==(n-n/2)){
+>                 return 1+min(max(superEggDrop(k-1,n/2-1),superEggDrop(k,n/2)),max(superEggDrop(k-1,n/2),superEggDrop(k,n/2-1)));
+>             }
+>             //奇数层的情况
+>             //n/2+1层碎了，应该是（k-1,n/2+1），没碎则是（k,n/2-1）;
+>             //中间层碎了，应该是（k-1,n/2）,中间层没碎，应该是（k,n/2）;(后来经过测试用例，发现这种思路是不对的，选择再下面一层，反而有可能操作次数更少)
+>             //n/2-1层碎了，应该是（k-1,n/2-1），没碎则是（k,n/2+1）;
+>             else if(n/2<(n-n/2)){
+>                 return 1+min(max(superEggDrop(k,n/2+1),superEggDrop(k-1,n/2-1)),max(superEggDrop(k-1,n/2),superEggDrop(k,n/2)));
+>             }
+>             return 0;
+>         }
 >     }
 > };
 > ```
