@@ -4,7 +4,7 @@
 
 ### 负二进制相加
 
-> **思路一**
+> ### 思路一
 >
 > 直接算出两个数组的和，相加，再转换成二进制
 >
@@ -47,7 +47,7 @@ public:
 };
 ```
 
-> **思路二**
+> ### 思路二
 >
 > 1. 对于负二进制而言，进位是-1，但是要注意如果`相加结果为-1`的特殊情况，如下表
 >
@@ -159,7 +159,9 @@ public:
 > };
 > ```
 >
-> 别人的题解（写的比我简洁duo'le）
+> 
+>
+> ### 别人的题解（写的比我简洁duo'le）
 >
 > ```cpp
 > class Solution {
@@ -191,6 +193,127 @@ public:
 > 
 > 作者：lcbin
 > 链接：https://leetcode.cn/problems/adding-two-negabinary-numbers/solution/python3javacgotypescript-yi-ti-yi-jie-mo-mg0a/
+> 来源：力扣（LeetCode）
+> 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+> ```
+>
+> 
+
+## day 2
+
+### 受标签影响的最大值
+
+> ### 思路一
+>
+> 1. 用一个map记录对应的标签的次数<标签，次数>
+>
+> 2. （有一个测试用例超出时间了，因此将原先的values数组按照值进行排序，方便后面剪枝，结果没用。。。。）
+>
+> 3. 然后就是回溯
+>
+>    这个回溯写了巨久，首先结束条件是达到数组的size，然后numWanted和useLimit进行判断（这部分放在for循环中）
+>
+> **<font color="red">结果：69/81</font>**
+>
+> ```cpp
+> class Solution {
+> private:
+>     int sum=0;
+>     int res=0;
+>     map<int,int> mp;
+>     void backtrack(vector<pair<int,int>>& values,int i, int numWanted, int useLimit,map<int,int> mp,int r){
+>         //cout<<"进入:"<<i<<"  和:"<<r<<endl;
+>         if(i>=values.size()) {
+>             //cout<<"结束位置："<<i<<"  和:"<<r<<endl;
+>             if(r>res){
+>                 res=r;
+>             }
+>             return ;
+>         }
+>         for(int j=i;j<values.size();j++){
+>             sum++;
+>             mp[values[j].second]++;
+>             if(sum>numWanted){
+>                 //cout<<"结束位置："<<i<<"  和:"<<r<<endl;
+>                 sum--;
+>                 mp[values[j].second]--;
+>                 if(r>res){
+>                     res=r;
+>                 }
+>                 break;
+>             }
+>             if(mp[values[j].second]>useLimit){
+>                 //cout<<"结束位置："<<i<<"  和:"<<r<<endl;
+>                 sum--;
+>                 mp[values[j].second]--;
+>                 if(r>res){
+>                     res=r;
+>                 }
+>                 continue;
+>             }
+>             r+=values[j].first;
+>             backtrack(values,j+1,numWanted,useLimit,mp,r);
+>             r-=values[j].first;
+>             sum--;
+>             mp[values[j].second]--;
+>         }
+>     }
+> public:
+>     int largestValsFromLabels(vector<int>& values, vector<int>& labels, int numWanted, int useLimit) {
+>         //建立map
+>         for(int i=0;i<labels.size();i++){
+>             mp[labels[i]]=0;
+>         }
+>         //对vector按照值的大小进行排序，便于后续剪枝
+>         vector<pair<int,int>> vec;
+>         for(int i=0;i<values.size();i++){
+>             vec.push_back(pair<int,int>(values[i],labels[i]));
+>         }
+>         sort(vec.begin(),vec.end(),[](const pair<int, int>& a, const pair<int, int>& b){ return a.first > b.first; });
+>         //回溯找子集，大于numWanted或者大于useLimit剪枝
+>         backtrack(vec,0,numWanted,useLimit,mp,0);
+>         return res;
+>     }
+> };
+> ```
+>
+
+> ### 思路二
+>
+> 1. 对于两个数组进行排序比较难，可以开新数组对values排序后的顺序记录下来
+> 2. 然后map用来记录useLimit
+> 3. 使用贪心
+>
+> ```cpp
+> class Solution {
+> public:
+>     int largestValsFromLabels(vector<int>& values, vector<int>& labels, int numWanted, int useLimit) {
+>         int n = values.size();
+>         //开辟新数组，用来记录排序后原先的顺序
+>         vector<int> id(n);
+>         iota(id.begin(), id.end(), 0);
+>         sort(id.begin(), id.end(), [&](int i, int j) {
+>             return values[i] > values[j];
+>         });
+> 
+>         int ans = 0, choose = 0;
+>         unordered_map<int, int> cnt;
+>         //从大到小排序，贪心，首先是数字要最大，然后是不超过数字数量限制和标签shu'li'a
+>         for (int i = 0; i < n && choose < numWanted; ++i) {
+>             int label = labels[id[i]];
+>             if (cnt[label] == useLimit) {
+>                 continue;
+>             }
+>             ++choose;
+>             ans += values[id[i]];
+>             ++cnt[label];
+>         }
+>         return ans;
+>     }
+> };
+> 
+> 作者：LeetCode-Solution
+> 链接：https://leetcode.cn/problems/largest-values-from-labels/solution/shou-biao-qian-ying-xiang-de-zui-da-zhi-5h9ll/
 > 来源：力扣（LeetCode）
 > 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 > ```
