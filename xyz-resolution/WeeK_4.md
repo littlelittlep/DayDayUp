@@ -318,4 +318,29 @@ public:
 > 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 > ```
 >
-> 
+
+## day 3
+
+### 盛水最多的容器
+
+> **思路**
+>
+> **双指针**，头尾，每次移短板，移动短的更可能赢
+>
+> ```cpp
+> class Solution {
+> public:
+>     int maxArea(vector<int>& height) {
+>     int v=0;
+>     int i=0;
+>     int j=height.size()-1;
+>    
+>     while(i<=j)
+>     {
+>         v=min(height[i],height[j])*(j-i)>v?min(height[i],height[j])*(j-i):v;
+>         height[i]>height[j]?j--:i++;
+>     }
+>     return v;
+>     }
+> };
+> ```
