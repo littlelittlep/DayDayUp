@@ -344,3 +344,48 @@ public:
 >     }
 > };
 > ```
+
+### K和数对的最大数目
+
+> **思路**
+>
+> 数组排序，然后双指针往中间走，一直超出时间限制得到原因是注释bu'fen和满足条件时我用了erase，这个操作太耗费时间，直接移动指针时间开销小很多
+>
+> ```cpp
+> class Solution {
+> public:
+>     int maxOperations(vector<int>& nums, int k) {
+>         //对数组进行排序，左右指针分别在数组的头尾向中间走
+>         sort(nums.begin(),nums.end());
+>         int l=0,r=nums.size()-1;
+>         int res=0;
+>         bool flag;
+>         //如果左指针小于右指针
+>         for(;l<r;){
+>             flag=true;
+>             //两数相加满足条件，删除两个元素
+>             if(nums[l]+nums[r]==k){
+>                 // cout<<nums[l]<<" "<<nums[r]<<endl;
+>                 // nums.erase(nums.begin()+l);
+>                 // nums.erase(nums.begin()+r-1);
+>                 l++;
+>                 r--;
+>                 res++;
+>                 //if(nums.size()==0) return res;
+>                 flag=false;
+>             }
+>             //两数之和小于目标，l++
+>             else if(nums[l]+nums[r]<k){
+>                 l++;
+>             }
+>             //两数之和小于目标，r--
+>             else if(nums[l]+nums[r]>k){
+>                 r--;
+>             }
+>         }
+>         return res;
+>     }
+> };
+> ```
+>
+> 
